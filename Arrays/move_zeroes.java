@@ -1,23 +1,27 @@
 // Problem: Move Zeroes
-// Move all zeros to end while maintaining order
+// Description: Shift all zero values to the end while keeping order of non-zero elements
+// Approach: Two-pointer (swap technique)
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
-class MoveZeroes {
-    public void moveZeroes(int[] nums) {
+class MoveZeroesSolution {
 
-        int insertPos = 0;
+    public void shiftZeroes(int[] arr) {
 
-        // Place all non-zero elements first
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                nums[insertPos] = nums[i];
-                insertPos++;
+        int left = 0; // points to position for next non-zero
+
+        for (int right = 0; right < arr.length; right++) {
+
+            // When a non-zero element is found
+            if (arr[right] != 0) {
+
+                // Swap elements
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+
+                left++;
             }
-        }
-
-        // Fill remaining positions with zero
-        while (insertPos < nums.length) {
-            nums[insertPos] = 0;
-            insertPos++;
         }
     }
 }
